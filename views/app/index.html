@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+  <title>Document</title>
+</head>
+
+<body class="flex h-screen pt-20 flex md:flex-row p-2 gap-2 sm:flex-col">
+  <form id="form" class="form-group mb-6 form-label inline-block mb-2 text-gray-700 form-label inline-block mb-2 text-gray-700 block p-6 rounded-lg shadow-lg border-gray-300 md:w-[50%] bg-gray-100 sm:w-[100%]">
+    <h2 class="text-lg font-medium mb-4">Add Contact</h2>
+    <div class="mb-4">
+      <label class="block font-medium mb-2" for="name">
+        Name
+      </label>
+      <input
+      id="name"
+      class="form-control
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      />
+    </div>
+    <div class="mb-4">
+      <label class="block font-medium mb-2" for="phone" >
+        Phone
+      </label>
+      <input
+      id="phone"
+      class="form-control
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      placeholder="XXX-XXX-XXXX"
+      />
+    </div>
+    <button
+    class="
+    px-6
+    py-2.5
+    bg-blue-600
+    text-white
+    font-medium
+    text-xs
+    leading-tight
+    uppercase
+    rounded
+    shadow-md
+    hover:bg-blue-700 hover:shadow-lg
+    focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+    active:bg-blue-800 active:shadow-lg
+    transition
+    duration-150
+    ease-in-out"
+      type="submit"
+    >
+      Add Contact
+    </button>
+  </form>
+  <div id="table-container" class=" p-4 float-right overflow-auto h-36 border border-gray-400 shadow-md md:w-[50%] sm:w-[100%] bg-gray-100 rounded-lg border-none">
+
+      <table id="table" class="table-auto" >
+        <thead>
+          <tr class="text-left font-medium">
+              <th class="text-center pl-2 font-bold">Name & Phone Number</th>
+              <!-- <th class="text-center font-bold">Phone Number</th> -->
+              <th class="text-center p-2 font-bold">Actions</th>
+            <th class="p-4"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+  </div>
+  <!-- <button id="close" class="fixed bottom-0 right-0 p-4 bg-red-500 text-white rounded-full">Log Out</button> -->
+  <!-- <button  class="fixed bottom-0 right-0 p-4 bg-red-500 text-white rounded-full sm:block">Log Out</button> -->
+  <script src="/components/nav.js"></script>
+  <script src="index.js"></script>
+
+  </body>
+</html>
