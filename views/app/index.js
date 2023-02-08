@@ -16,8 +16,8 @@ let numberValidation = false;
     data.forEach(todo => {
       const newRow = document.createElement("tr");
       newRow.id = todo.id;
-      newRow.innerHTML = `<input readonly type="text" value="${todo.text}" class="bg-transparent">
-      <input readonly type="text" value="${todo.number}" class="bg-transparent font-semibold">
+      newRow.innerHTML = `<input id="edit-name" readonly type="text" value="${todo.text}" class="bg-transparent">
+      <input id="edit-phone" readonly type="text" value="${todo.number}" class="bg-transparent font-semibold">
       <td><button class="delete-button h-10 px-5 m-2 text-red-100 transition-colors duration-150 
       bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Delete</button></td> 
       <td><button class="edit-button h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 
@@ -64,8 +64,8 @@ form.addEventListener("submit", async e => {
 
   const newRow = document.createElement("tr");
   newRow.id = data.id
-  newRow.innerHTML = `<input readonly type="text" value="${name}" class="bg-transparent">
-  <input readonly type="text" value="${phone}" class="bg-transparent font-semibold"><td><button class="delete-button h-10 px-5 m-2 text-red-100 transition-colors duration-150 
+  newRow.innerHTML = `<input id="edit-name" readonly type="text" value="${name}" class="bg-transparent">
+  <input id="edit-phone" readonly type="text" value="${phone}" class="bg-transparent font-semibold"><td><button class="delete-button h-10 px-5 m-2 text-red-100 transition-colors duration-150 
   bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Delete</button></td> <td><button class="edit-button h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 
   rounded-lg focus:shadow-outline hover:bg-green-800">Edit</button></td>`;
   table.appendChild(newRow);
@@ -79,6 +79,8 @@ form.addEventListener("submit", async e => {
 
 
 document.querySelector("table").addEventListener("click", async e => {
+  const editName = document.querySelector('#edit-name');
+  const editPhone = document.querySelector('#edit-phone');
   // console.log(e.target)
   if (e.target.classList.contains("delete-button")) {
     const id = e.target.parentElement.parentElement.id
@@ -91,16 +93,34 @@ document.querySelector("table").addEventListener("click", async e => {
     name.removeAttribute('readonly');
     number.removeAttribute('readonly');
     e.target.innerText = 'Save'
+
+    nameValidation = true;
+
+    editName.addEventListener('input', e =>{
+      nameValidation = nameRegex.test(e.target.value);
+    });
+
+    editPhone.addEventListener('input', e =>{
+  numberValidation = phoneRegex.test(e.target.value);
+    })
+
   }else if (e.target.innerText === 'Save') {
-    const td = e.target.parentElement.parentElement;
-    console.log(td);
-    const name = e.target.parentElement.parentElement.children[0];
-    const number = e.target.parentElement.parentElement.children[1];
-    console.log(name, number);
-    await axios.patch(`/api/todos/${td.id}`, { text: name.value, number: number.value });
-    name.setAttribute('readonly', 'readonly');
-    number.setAttribute('readonly', 'readonly');
-    e.target.innerText = 'Edit'
+    if (!nameValidation || !numberValidation) {
+    alert("Name or Phone are not valid.");
+      
+    } else{
+      const td = e.target.parentElement.parentElement;
+      console.log(td);
+      const name = e.target.parentElement.parentElement.children[0];
+      const number = e.target.parentElement.parentElement.children[1];
+      console.log(name, number);
+      await axios.patch(`/api/todos/${td.id}`, { text: name.value, number: number.value });
+      name.setAttribute('readonly', 'readonly');
+      number.setAttribute('readonly', 'readonly');
+      e.target.innerText = 'Edit'
+
+    }
+
     
   }
 });
