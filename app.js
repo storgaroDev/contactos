@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const todosRouter = require('./controllers/todos');
 const userExtractor = require('./middlewares/auth');
 const logOutRouter = require('./controllers/logout');
+const resetRouter = require('./controllers/reset');
 const { MONGO_URI } = require('./config');
 
 
@@ -38,6 +39,9 @@ app.use('/components', express.static(path.resolve('views', 'components')));
 app.use('/images', express.static(path.resolve('img')));
 app.use('/app/:id', express.static(path.resolve('views', 'app')));
 app.use('/verify/:id/:token', express.static(path.resolve('views', 'verify')));
+app.use('/reset-password', express.static(path.resolve('views', 'reset')));
+app.use('/newpassword/:token', express.static(path.resolve('views', 'newpassword')));
+
 
 
 
@@ -50,6 +54,7 @@ app.use('/api/users', userRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/todos', userExtractor, todosRouter);
 app.use('/api/logout', logOutRouter);
+app.use('/api/reset', resetRouter);
 
 
 
