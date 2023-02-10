@@ -408,7 +408,7 @@ resetRouter.post('/', async (request, response) =>{
                                       <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                         <tbody>
                                           <tr>
-                                          <td> <a href="${PAGE_URL}new-password/${verifyToken}" target="_blank">Restablecer contraseña</a> </td>
+                                          <td> <a href="${PAGE_URL}newpassword/${verifyToken}" target="_blank">Restablecer contraseña</a> </td>
                                           </tr>
                                         </tbody>
                                       </table>
