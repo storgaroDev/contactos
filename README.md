@@ -1,2 +1,2 @@
 # contactos
-contactpos app fullstack
+A list of contacts different from the rest
